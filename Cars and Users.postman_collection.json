@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "d1e3488d-1239-44b3-b916-b1f5a8878694",
+		"name": "Cars and Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43268308"
+	},
+	"item": [
+		{
+			"name": "Adding a car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"BMW\",\r\n    \"type\":\"SUV\",\r\n    \"color\":\"Gray\",\r\n    \"year\": 2025\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5555/cars/add",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"cars",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding an user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Asror\",\r\n    \"surname\":\"Samadov\",\r\n    \"nationality\":\"Tadjik\",\r\n    \"birthYear\": 2003\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5555/users",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all cars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5555/cars",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a car by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5555/cars/6810764f65f5b0acbf6de300",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"cars",
+						"6810764f65f5b0acbf6de300"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting an user by id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Updating a car",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Mercedes-Benz\",\r\n    \"type\":\"Sedan\",\r\n    \"color\":\"Blue\",\r\n    \"year\": 2025\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5555/cars/681085f245abd92e9c3d3bf7",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"cars",
+						"681085f245abd92e9c3d3bf7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating an user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Asror\",\r\n    \"surname\":\"Samadov\",\r\n    \"nationality\":\"Tajik\",\r\n    \"birthYear\": 2004\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5555/users/681091b4701466212319f84f",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"users",
+						"681091b4701466212319f84f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a car",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting an user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
