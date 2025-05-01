@@ -10,20 +10,20 @@ const CarModel = require("../models/car");
 })();
 
 async function getAllCars(req, res) {
-    const cars = await CarModel.find()
+    const cars = await CarModel.find().populate("UserId")
     res.status(200).send(cars)
 }
 
 async function getOneById(req, res) {
     const id = req.params.id
-    const car = await CarModel.findById(id)
+    const car = await CarModel.findById(id).populate("UserId")
     res.status(200).send(car)
 }
 
 async function addNewCar(req, res) {
-    const { name, type, color, year } = req.body
+    const { name, type, color, year, UserId } = req.body
     const car = new CarModel({
-        name, year, type, color
+        name, type, color, year, UserId
     })
 
     await car.save()
