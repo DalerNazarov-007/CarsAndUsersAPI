@@ -1,13 +1,9 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const UserModel = require("../models/user");
+const {UserValid, UserValidUpdate} = require("../validation/usersValidation");
+const Joi = require("joi")
 
-
-
-(async () => {
-    await mongoose.connect('mongodb://127.0.0.1:27017/RomanCars');
-    console.log('Connected!');
-})();
 
 async function getAllUsers(req, res) {
     const users = await UserModel.find()
@@ -21,11 +17,8 @@ async function getOneById(req, res) {
 }
 
 async function addNewUser(req, res) {
-    const { name, surname, nationality, birthYear } = req.body
-    const user = new UserModel({
-        name, surname, nationality, birthYear
-    })
-
+    const data = await UserValid.validateAsync(req.body)
+    const user = new UserModel(data)
     await user.save()
 
     res.status(201).send(user)
@@ -33,11 +26,8 @@ async function addNewUser(req, res) {
 
 async function editUser(req, res) {
     const id = req.params.id
-    const { name, surname, nationality, birthYear } = req.body
-    const user = await UserModel.findByIdAndUpdate(id, {
-        name, surname, nationality, birthYear
-    }) 
-    await user.save()
+    const data = await UserValidUpdate.validateAsync(req.body)
+    await UserModel.findByIdAndUpdate(id, data) 
     res.status(200).send({message: "Successfully Edited"})
 }
 

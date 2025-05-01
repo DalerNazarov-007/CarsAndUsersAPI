@@ -1,13 +1,8 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const CarModel = require("../models/car");
-
-
-
-(async () => {
-    await mongoose.connect('mongodb://127.0.0.1:27017/RomanCars');
-    console.log('Connected!');
-})();
+const {CarValid,CarValidUpdate } = require("../validation/carsValidation");
+const Joi = require("joi")
 
 async function getAllCars(req, res) {
     const cars = await CarModel.find().populate("UserId")
@@ -21,10 +16,10 @@ async function getOneById(req, res) {
 }
 
 async function addNewCar(req, res) {
-    const { name, type, color, year, UserId } = req.body
-    const car = new CarModel({
-        name, type, color, year, UserId
-    })
+    const data = await CarValid.validateAsync(req.body)
+    console.log(data);
+    
+    const car = new CarModel(data)
 
     await car.save()
 
@@ -33,11 +28,8 @@ async function addNewCar(req, res) {
 
 async function editCar(req, res) {
     const id = req.params.id
-    const { name, type, color, year } = req.body
-    const car = await CarModel.findByIdAndUpdate(id, {
-        name, type, color, year
-    }) 
-    await car.save()
+    const data = await CarValidUpdate.validateAsync(req.body)
+    const car = await CarModel.findByIdAndUpdate(id, data) 
     res.status(200).send({message: "Sucessfully edited!"})
 }
 

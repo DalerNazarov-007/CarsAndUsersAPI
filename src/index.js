@@ -16,6 +16,10 @@ app.use(express.urlencoded({extended: true}));
 app.use("/cars", CarsRouter)
 app.use("/users", UsersRouter)
 
+app.use((error, req, res, next) => {
+    res.send({message: error.message})
+})
+
 app.listen(5555, () => {
     console.log("Server running on port 5555!");
 });
